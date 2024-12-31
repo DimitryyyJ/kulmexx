@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='globalproducts.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='products.css') }}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600&display=swap"
+    />
+  </head>
+  <body>
+    <div class="produktins">
+      <button class="kulmex-logo-1" id="sakums">
+        <img class="ebene-1-icon" alt="" src="{{ url_for('static', filename='/public/ebene-1.svg') }}" />
+
+        <img class="ebene-2-icon" alt="" src="{{ url_for('static', filename='/public/ebene-2.svg') }}" />
+
+        <img class="ebene-3-icon" alt="" src="{{ url_for('static', filename='/public/ebene-3.svg') }}" />
+      </button>
+      <section class="frame-parent">
+        <div class="rectangle-wrapper">
+          <div class="frame-child"></div>
+        </div>
+        <nav class="navigation-group" id="navbar">
+          <button class="produkti-wrapper" id="produkti">
+            <div class="produkti">Produkti</div>
+          </button>
+          <button class="skums-wrapper" id="saakums">
+            <div class="skums">Sākums</div>
+          </button>
+          <button class="kontakti-wrapper" id="kontakti">
+            <div class="skums">Kontakti</div>
+          </button>
+          <button class="par-mums-wrapper" id="parmums">
+            <div class="par-mums">Par mums</div>
+          </button>
+          <button class="piegde-wrapper" id="piegade">
+            <div class="skums">Piegāde</div>
+          </button>
+          <button class="jaunumi-wrapper" id="jaunumi">
+            <div class="skums">Jaunumi</div>
+          </button>
+        </nav>
+      </section>
+      <button class="rectangle-parent" id="grozs">
+        <div class="group-child"></div>
+        <img class="group-item" alt="" src="{{ url_for('static', filename='/public/group-30.svg') }}" />
+
+        <div class="grozs">Grozs</div>
+      </button>
+      <input
+        class="produktins-child"
+        id="meklet"
+        placeholder="Meklēt Kulmex..."
+        type="text"
+      />
+
+      <section class="group-parent">
+        <div class="rectangle-group">
+          <footer class="group-inner" id="lowbar"></footer>
+          <div class="group-container">
+            <div class="buttons-icon-parent">
+              <button class="buttons-icon" id="f">
+                <img class="icon" alt="" src="{{ url_for('static', filename='/public/icon@2x.png') }}" />
+              </button>
+              <button class="buttons-icon1" id="y">
+                <img class="icon" alt="" src="{{ url_for('static', filename='/public/icon1@2x.png') }}" />
+              </button>
+              <button class="buttons-icon2" id="i">
+                <img class="icon" alt="" src="{{ url_for('static', filename='/public/icon2@2x.png') }}" />
+              </button>
+            </div>
+            <div class="seko-mums">SEKO MUMS</div>
+          </div>
+          <div class="vector-parent">
+            <img class="vector-icon" alt="" src="{{ url_for('static', filename='/public/vector.svg') }}" />
+
+            <div class="div">+371 28835445</div>
+          </div>
+          <div class="darba-laiks-p-container">
+            <p class="darba-laiks">Darba laiks</p>
+            <p class="p-">P. - Pk. 09:00 - 19:00</p>
+            <p class="p-">S. 10:00 - 17:00</p>
+            <p class="p-">Sv. Slēgts</p>
+          </div>
+        </div>
+        <div class="veikals-rga-balt-iela-1b-parent">
+          <div class="veikals-rga-balt-container">
+            <p class="veikals">VEIKALS</p>
+            <p class="rga-balt-iela">Rīga, Baltā iela 1B</p>
+          </div>
+          <iframe class="rectangle-iframe" id="maps"> </iframe>
+        </div>
+      </section>
+      <main class="frame-main" id="main">
+        <div class="group-div">
+          <div id="instance-parent" class="instance-parent">
+            <div class="gridd" id="gridd">
+            {% for dt in data %}
+
+            <div class="rectangle-container" id="product">
+
+              <button class="instance-child" id="blgel" onclick="window.location.href='{{ url_for('blgel', dt_id=dt.id) }}'">
+
+              </button>
+
+                <img
+                  class="img-2540-1-1"
+                  id="prodimage"
+                  alt="{{ dt.name }}"
+                  src="data:image/jpeg;base64,{{ dt.attels}}"
+                />
+             <form method="POST" action="/add_to_cart">
+               <input type="hidden" name="id" value="{{ dt.id }}">
+                <input type="hidden" name="nosaukums" value="{{ dt.nosaukums }}">
+                <input type="hidden" name="typ" value="{{ dt.typ }}">
+                <input type="hidden" name="cena" value="{{ dt.cena }}">
+                <button class="vector-group" id="cart" type="submit">
+                    <img class="ellipse-icon" alt="" src="{{ url_for('static', filename='/public/ellipse-1.svg') }}" />
+                    <img class="cart3-icon" alt="" src="{{ url_for('static', filename='/public/cart3.svg') }}" />
+                </button>
+            </form>
+
+
+                <div class="div1">{{dt.cena}}</div>
+                <div class="kulmex-black-washing-gel3-l-parent">
+                  <div class="kulmex-black-washing-container">
+                    <p class="darba-laiks">{{dt.nosaukums}}</p>
+                    <p class="darba-laiks">{{dt.typ}}</p>
+                  </div>
+                </div>
+            </div>
+
+
+            {% endfor %}
+
+
+
+
+            </div>
+          </div>
+          <button class="group-button" id="toppreces">
+              <div class="group-child13"></div>
+              <div class="top-preces" id="topprecesText">Top preces</div>
+          </button>
+          <div class="dropdown-menu" id="dropdownMenu">
+              <a href="#" data-sort="cena-ascending">Augoša cena</a>
+              <a href="#" data-sort="cena-descending">Dilstoša cena</a>
+              <a href="#" data-sort="id-descending">Pēc datuma</a>
+              <a href="#" data-sort="skatijumi-descending">Apskatītākie</a>
+          </div>
+
+<!--          <div id="groupContainer" class="popup-overlay" style="display: none">-->
+
+
+<!--            <div class="rectangle-root" id="dropdown-menu">-->
+<!--                <div class="component-child"></div>-->
+<!--                <div class="component-item"></div>-->
+<!--                <div class="component-inner"></div>-->
+<!--                <div class="component-child1"></div>-->
+<!--                <div class="component-child2"></div>-->
+<!--                <img class="rectangle-icon" alt="" src="{{ url_for('static', filename='/public/rectangle-17.svg') }}" />-->
+
+<!--                <div class="augoa-cena">Augoša cena</div>-->
+<!--                <div class="dilstoa-cena">Dilstoša cena</div>-->
+<!--                <div class="pc-datuma">Pēc datuma</div>-->
+<!--                <div class="apskattkie">Apskatītākie</div>-->
+<!--                <div class="top-preces1">Top preces</div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+          <button class="rectangle-parent2" id="cena">
+            <div class="instance-child13"></div>
+            <div class="cena">Cena (€)</div>
+            <img class="vector-icon1" alt="" src="{{ url_for('static', filename='/public/vector1.svg') }}" />
+          </button>
+          <div class="filtrs">Filtrs</div>
+          <div class="krtot-pc">Kārtot pēc</div>
+          <img class="vector-icon2" alt="" src="{{ url_for('static', filename='/public/vector2.svg') }}" />
+        </div>
+        <div class="kulmex-veikal-container">
+          <p class="darba-laiks">Kulmex veikalā  - Rīga, Baltā iela 1B,</p>
+          <p class="darba-laiks">preces varat gan apskatīt, gan iegādāties</p>
+        </div>
+        <iframe class="frame-item" id="karte"> </iframe>
+
+        <div name="productFilter" class="checkcircle-parent">
+          <input value="visi" name="productFilter" class="checkcircle" id="visiprodukti" type="radio" checked/>
+          <div class="visi">Visi produkti</div>
+
+          <input value="pulveris" name="productFilter" class="checkcircle1" id="gel" type="radio" />
+          <div class="gel">Gel</div>
+
+          <input value="gel" name="productFilter" class="checkcircle2" id="pulveris" type="radio" />
+          <div class="pulveris">Pulveris</div>
+
+          <input value="tabletes" name="productFilter" class="checkcircle3" id="tabletes" type="radio" />
+          <div class="tabletes">Tabletes</div>
+
+          <input value="virtuves" name="productFilter" class="checkcircle4" id="virtuves" type="radio" />
+          <div class="virtuves">Virtuves ķīmija</div>
+
+          <input value="tualetes" name="productFilter" class="checkcircle5" id="tualetes" type="radio" />
+          <div class="tualetes">Tualetes ķīmija</div>
+        </div>
+      </main>
+    </div>
+
+
+
+    <div id="component2Container" class="popup-overlay" style="display: none">
+      <div class="component-2">
+        <div class="component-2-child"></div>
+        <div class="rectangle-parent4">
+          <div class="group-child15"></div>
+          <div class="group-child16"></div>
+          <div class="line-div"></div>
+        </div>
+        <div class="rectangle-parent5">
+          <div class="group-child17"></div>
+          <div class="filtrs1">Filtrs</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var groupContainer = document.getElementById("produkti");
+      if (groupContainer) {
+        groupContainer.addEventListener("click", function (e) {
+          window.location.href = "{{ url_for('products') }}";
+        });
+      }
+
+      var groupContainer1 = document.getElementById("sakums");
+      if (groupContainer1) {
+        groupContainer1.addEventListener("click", function (e) {
+          window.location.href = "{{ url_for('home') }}";
+        });
+      }
+
+      var groupContainer2 = document.getElementById("kontakti");
+      if (groupContainer2) {
+        groupContainer2.addEventListener("click", function (e) {
+          window.location.href = "{{ url_for('contacts') }}";
+        });
+      }
+
+      var groupContainer1 = document.getElementById("saakums");
+      if (groupContainer1) {
+        groupContainer1.addEventListener("click", function (e) {
+          window.location.href = "{{ url_for('home') }}";
+        });
+      }
+
+      var groupContainer3 = document.getElementById("parmums");
+      if (groupContainer3) {
+        groupContainer3.addEventListener("click", function (e) {
+          window.location.href = "{{ url_for('parmums') }}";
+        });
+      }
+
+      var groupContainer4 = document.getElementById("piegade");
+      if (groupContainer4) {
+        groupContainer4.addEventListener("click", function (e) {
+          window.location.href = "{{ url_for('piegade') }}";
+        });
+      }
+
+      var groupContainer5 = document.getElementById("jaunumi");
+      if (groupContainer5) {
+        groupContainer5.addEventListener("click", function (e) {
+          window.location.href = "{{ url_for('jaunumi') }}";
+        });
+      }
+
+      var groupDiv = document.getElementById("product");
+      if (groupDiv) {
+        groupDiv.addEventListener("click", function (e) {
+          // Please sync "Black gel" to the project
+        });
+      }
+
+      var groupContainerGrozs = document.getElementById("grozs");
+      if (groupContainerGrozs) {
+        groupContainerGrozs.addEventListener("click", function (e) {
+          window.location.href = "{{ url_for('precart') }}";
+        });
+      }
+
+      var groupContainercart = document.getElementById("cart");
+      if (groupContainercart) {
+        groupContainercart.addEventListener("click", function (e) {
+          window.location.href = "{{ url_for('precart') }}";
+        });
+      }
+
+
+
+
+
+      var groupButton8 = document.getElementById("toppreces");
+      if (groupButton8) {
+        groupButton8.addEventListener("click", function () {
+          var popup = document.getElementById("groupContainer");
+          if (!popup) return;
+          var popupStyle = popup.style;
+          if (popupStyle) {
+            popupStyle.display = "flex";
+            popupStyle.zIndex = 100;
+            popupStyle.backgroundColor = "rgba(113, 113, 113, 0.3)";
+            popupStyle.alignItems = "center";
+            popupStyle.justifyContent = "center";
+          }
+          popup.setAttribute("closable", "");
+
+          var onClick =
+            popup.onClick ||
+            function (e) {
+              if (e.target === popup && popup.hasAttribute("closable")) {
+                popupStyle.display = "none";
+              }
+            };
+          popup.addEventListener("click", onClick);
+        });
+      }
+
+      var groupButton9 = document.getElementById("cena");
+      if (groupButton9) {
+        groupButton9.addEventListener("click", function () {
+          var popup = document.getElementById("component2Container");
+          if (!popup) return;
+          var popupStyle = popup.style;
+          if (popupStyle) {
+            popupStyle.display = "flex";
+            popupStyle.zIndex = 100;
+            popupStyle.backgroundColor = "rgba(113, 113, 113, 0.3)";
+            popupStyle.alignItems = "center";
+            popupStyle.justifyContent = "center";
+          }
+          popup.setAttribute("closable", "");
+
+          var onClick =
+            popup.onClick ||
+            function (e) {
+              if (e.target === popup && popup.hasAttribute("closable")) {
+                popupStyle.display = "none";
+              }
+            };
+          popup.addEventListener("click", onClick);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+    const radios = document.querySelectorAll('input[name="productFilter"]');
+    const gridd = document.getElementById('gridd');
+    const topprecesText = document.getElementById('topprecesText');
+    let currentFilterValue = 'visi';
+    let currentSortType = 'id-descending';
+
+    // Функция для получения продуктов с фильтром и сортировкой
+    function fetchProducts(filterValue, sortType) {
+        fetch(`/get-products?sadala=${filterValue}&sort_by=${sortType}`)
+            .then(response => response.json())
+            .then(data => updateProductList(data))
+            .catch(error => console.error('Ошибка:', error));
+    }
+
+    // Обновление списка продуктов
+    function updateProductList(products) {
+        gridd.innerHTML = ''; // Очищаем список товаров
+
+        products.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('rectangle-container');
+            productDiv.id = 'product';
+
+            // Создаем кнопку
+            const button = document.createElement('button');
+            button.classList.add('instance-child');
+            button.id = 'blgel';
+            button.onclick = () => window.location.href = `/blgel/${product.id}`;
+
+            // Создаем изображение
+            const img = document.createElement('img');
+            img.classList.add('img-2540-1-1');
+            img.id = 'prodimage';
+            img.alt = product.nosaukums;
+            img.src = `data:image/jpeg;base64,${product.attels}`;
+
+            // Создаем форму
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/add_to_cart';
+
+            // Создаем скрытые поля формы
+            const idInput = document.createElement('input');
+            idInput.type = 'hidden';
+            idInput.name = 'id';
+            idInput.value = product.id;
+
+            const nosaukumsInput = document.createElement('input');
+            nosaukumsInput.type = 'hidden';
+            nosaukumsInput.name = 'nosaukums';
+            nosaukumsInput.value = product.nosaukums;
+
+            const typInput = document.createElement('input');
+            typInput.type = 'hidden';
+            typInput.name = 'typ';
+            typInput.value = product.typ;
+
+            const cenaInput = document.createElement('input');
+            cenaInput.type = 'hidden';
+            cenaInput.name = 'cena';
+            cenaInput.value = product.cena;
+
+            const submitButton = document.createElement('button');
+            submitButton.classList.add('vector-group');
+            submitButton.id = 'cart';
+            submitButton.type = 'submit';
+
+            // Создаем и добавляем иконки в кнопку
+            const ellipseIcon = document.createElement('img');
+            ellipseIcon.classList.add('ellipse-icon');
+            ellipseIcon.alt = '';
+            ellipseIcon.src = '/static/public/ellipse-1.svg';
+
+            const cartIcon = document.createElement('img');
+            cartIcon.classList.add('cart3-icon');
+            cartIcon.alt = '';
+            cartIcon.src = '/static/public/cart3.svg';
+
+            submitButton.appendChild(ellipseIcon);
+            submitButton.appendChild(cartIcon);
+
+            // Добавляем элементы в форму
+            form.appendChild(idInput);
+            form.appendChild(nosaukumsInput);
+            form.appendChild(typInput);
+            form.appendChild(cenaInput);
+            form.appendChild(submitButton);
+
+            // Создаем цену и описание
+            const priceDiv = document.createElement('div');
+            priceDiv.classList.add('div1');
+            priceDiv.textContent = product.cena;
+
+            const infoDiv = document.createElement('div');
+            infoDiv.classList.add('kulmex-black-washing-gel3-l-parent');
+
+            const textDiv = document.createElement('div');
+            textDiv.classList.add('kulmex-black-washing-container');
+
+            const nameP = document.createElement('p');
+            nameP.classList.add('darba-laiks');
+            nameP.textContent = product.nosaukums;
+
+            const typeP = document.createElement('p');
+            typeP.classList.add('darba-laiks');
+            typeP.textContent = product.typ;
+
+            textDiv.appendChild(nameP);
+            textDiv.appendChild(typeP);
+            infoDiv.appendChild(textDiv);
+
+            // Добавляем все элементы в productDiv
+            productDiv.appendChild(button);
+            productDiv.appendChild(img);
+            productDiv.appendChild(form);
+            productDiv.appendChild(priceDiv);
+            productDiv.appendChild(infoDiv);
+
+            // Добавляем productDiv в gridd
+            gridd.appendChild(productDiv);
+        });
+    }
+
+    // Слушатель изменения радиобоксов
+    radios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.checked) {
+                currentFilterValue = this.value;
+                fetchProducts(currentFilterValue, currentSortType);
+            }
+        });
+    });
+
+    // Изначально загружаем все продукты
+    fetchProducts(currentFilterValue, currentSortType);
+
+    // Слушатель для кнопки и выпадающего меню
+    document.getElementById("toppreces").addEventListener("click", function(event) {
+        var dropdown = document.getElementById("dropdownMenu");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        event.stopPropagation();
+    });
+
+    window.onclick = function(event) {
+        var dropdown = document.getElementById("dropdownMenu");
+        if (!event.target.closest('#toppreces') && dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        }
+    };
+
+    // Обработка выбора опций в дропдаун меню
+    document.querySelectorAll('#dropdownMenu a[data-sort]').forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const selectedText = topprecesText.textContent;
+            const clickedText = this.textContent;
+
+            // Меняем текст на кнопке
+            topprecesText.textContent = clickedText;
+
+            // Обновляем текст в дропдаун меню
+            this.textContent = selectedText;
+
+            currentSortType = this.getAttribute('data-sort');
+            fetchProducts(currentFilterValue, currentSortType);
+
+            // Закрываем дропдаун меню
+            document.getElementById("dropdownMenu").style.display = "none";
+        });
+    });
+});
+      </script>
+  </body>
+</html>

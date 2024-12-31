@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+.popup-overlay {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0;
+}
+
+:root {
+  /* fonts */
+  --font-inter: Inter;
+
+  /* font sizes */
+  --font-size-5xl: 24px;
+  --font-size-xl: 20px;
+  --font-size-13xl: 32px;
+  --font-size-lgi: 19px;
+  --font-size-2xl: 21px;
+  --font-size-smi: 13px;
+  --font-size-13xl-3: 32.3px;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-black: #000;
+  --color-gainsboro: #e7e7e7;
+  --color-red: #e22019;
+  --color-cornflowerblue-100: #0f63b1;
+
+  /* Border radiuses */
+  --br-3xs: 10px;
+  --br-mini: 15px;
+  --br-6xl: 25px;
+  --br-7xs-4: 5.4px;
+}
